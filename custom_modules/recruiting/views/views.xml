@@ -12,6 +12,64 @@
         </field>
     </record>
 
+    <!-- Clients List View -->
+    <record id="view_recruiting_clients_tree" model="ir.ui.view">
+        <field name="name">recruiting.clients.tree</field>
+        <field name="model">recruiting.clients</field>
+        <field name="arch" type="xml">
+            <tree string="Clients">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="invoice" sum="Total Invoice"/>
+                <field name="receive" sum="Total Receive"/>
+                <field name="bill" sum="Total Bill"/>
+                <field name="bill_pay" sum="Total Bill Pay"/>
+                <field name="status"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Clients Form View -->
+    <record id="view_recruiting_clients_form" model="ir.ui.view">
+        <field name="name">recruiting.clients.form</field>
+        <field name="model">recruiting.clients</field>
+        <field name="arch" type="xml">
+            <form string="Client">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="invoice"/>
+                            <field name="receive"/>
+                            <field name="bill"/>
+                            <field name="bill_pay"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Clients Action -->
+    <record id="action_recruiting_clients" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="res_model">recruiting.clients</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first client!
+            </p>
+        </field>
+    </record>
+
     <!-- Top Menu Item -->
     <menuitem 
         id="menu_beman_recruiting_root"
@@ -24,6 +82,13 @@
         id="menu_beman_recruiting_main"
         name="Recruitment"
         parent="menu_beman_recruiting_root"
-        action="action_beman_recruiting_main"
+        sequence="1"/>
+
+    <!-- Clients Menu -->
+    <menuitem
+        id="menu_recruiting_clients"
+        name="Clients"
+        parent="menu_beman_recruiting_main"
+        action="action_recruiting_clients"
         sequence="1"/>
 </odoo> 
