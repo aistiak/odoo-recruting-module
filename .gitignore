@@ -1,2 +1,36 @@
-odoo-web-data
-postgres-data
+# PostgreSQL data
+postgres-data/
+
+# Odoo data
+odoo-web-data/
+
+# Python
+*.py[cod]
+__pycache__/
+*.so
+.Python
+*.egg
+*.egg-info/
+.installed.cfg
+*.egg-info
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+.directory
+*.swp
+*~
+
+# Logs
+*.log
+
+# Config
+.env
+
+# Custom addons
+custom_modules/**/static/description/icon.png
