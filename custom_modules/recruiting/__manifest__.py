@@ -8,8 +8,11 @@
     """,
     'depends': ['base', 'hr'],
     'data': [
+        'security/ir.model.access.csv',
         'views/views.xml',
     ],
     'installable': True,
     'application': True,
+    'sequence': 1,
+    'license': 'LGPL-3',
 } 

@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Add your views here -->
+    <!-- Action Window -->
+    <record id="action_beman_recruiting_main" model="ir.actions.act_window">
+        <field name="name">Recruitment Dashboard</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first recruitment record!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top Menu Item -->
+    <menuitem 
+        id="menu_beman_recruiting_root"
+        name="Beman Recruiting"
+        web_icon="recruiting,static/description/icon.png"
+        sequence="75"/>
+
+    <!-- Main Sub Menu -->
+    <menuitem 
+        id="menu_beman_recruiting_main"
+        name="Recruitment"
+        parent="menu_beman_recruiting_root"
+        action="action_beman_recruiting_main"
+        sequence="1"/>
 </odoo> 
