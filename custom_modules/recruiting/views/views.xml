@@ -2,13 +2,22 @@
 <odoo>
     <!-- Action Window -->
     <record id="action_beman_recruiting_main" model="ir.actions.act_window">
-        <field name="name">Recruitment Dashboard</field>
-        <field name="res_model">hr.employee</field>
+        <field name="name">Dashboard</field>
+        <field name="res_model">recruiting.clients</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create your first recruitment record!
-            </p>
+            <div class="o_welcome_message">
+                <h1 class="text-center o_wow_title display-3 fw-bold">Welcome to Beman Recruiting</h1>
+                <div class="text-center lead mb-3">
+                    Your complete recruitment management solution
+                </div>
+                <div class="text-center">
+                    <p>Start managing your recruitment process by creating your first client!</p>
+                    <a type="action" name="%(action_recruiting_clients)d" class="btn btn-primary">
+                        Create First Client
+                    </a>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -70,6 +79,54 @@
         </field>
     </record>
 
+    <!-- License List View -->
+    <record id="view_recruiting_license_tree" model="ir.ui.view">
+        <field name="name">recruiting.license.tree</field>
+        <field name="model">recruiting.license</field>
+        <field name="arch" type="xml">
+            <tree string="Licenses">
+                <field name="license_id"/>
+                <field name="name"/>
+                <field name="country"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- License Form View -->
+    <record id="view_recruiting_license_form" model="ir.ui.view">
+        <field name="name">recruiting.license.form</field>
+        <field name="model">recruiting.license</field>
+        <field name="arch" type="xml">
+            <form string="License">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="license_id"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="country"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- License Action -->
+    <record id="action_recruiting_license" model="ir.actions.act_window">
+        <field name="name">Licenses</field>
+        <field name="res_model">recruiting.license</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first license!
+            </p>
+        </field>
+    </record>
+
     <!-- Top Menu Item -->
     <menuitem 
         id="menu_beman_recruiting_root"
@@ -80,15 +137,24 @@
     <!-- Main Sub Menu -->
     <menuitem 
         id="menu_beman_recruiting_main"
-        name="Recruitment"
+        name="Dashboard"
         parent="menu_beman_recruiting_root"
+        action="action_beman_recruiting_main"
         sequence="1"/>
 
     <!-- Clients Menu -->
     <menuitem
         id="menu_recruiting_clients"
         name="Clients"
-        parent="menu_beman_recruiting_main"
+        parent="menu_beman_recruiting_root"
         action="action_recruiting_clients"
-        sequence="1"/>
+        sequence="2"/>
+
+    <!-- License Menu -->
+    <menuitem
+        id="menu_recruiting_license"
+        name="Licenses"
+        parent="menu_beman_recruiting_root"
+        action="action_recruiting_license"
+        sequence="3"/>
 </odoo> 

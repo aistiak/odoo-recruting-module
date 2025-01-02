@@ -23,3 +23,20 @@ class RecruitingClients(models.Model):
     _sql_constraints = [
         ('unique_email', 'unique(email)', 'Email must be unique!')
     ] 
+
+class RecruitingLicense(models.Model):
+    _name = 'recruiting.license'
+    _description = 'Recruiting License'
+    _order = 'create_date desc'
+
+    name = fields.Char(string='License Name', required=True)
+    license_id = fields.Char(string='License ID', required=True)
+    country = fields.Selection([
+        ('malaysia', 'Malaysia'),
+        ('saudi_arabia', 'Saudi Arabia')
+    ], string='Country', required=True)
+    create_date = fields.Datetime(string='Created at', default=lambda self: fields.Datetime.now(), readonly=True)
+
+    _sql_constraints = [
+        ('unique_license_id', 'unique(license_id)', 'License ID must be unique!')
+    ] 
