@@ -127,6 +127,117 @@
         </field>
     </record>
 
+    <!-- Job List View -->
+    <record id="view_recruiting_job_tree" model="ir.ui.view">
+        <field name="name">recruiting.job.tree</field>
+        <field name="model">recruiting.job</field>
+        <field name="arch" type="xml">
+            <tree string="Jobs">
+                <field name="date"/>
+                <field name="sln"/>
+                <field name="pp_name"/>
+                <field name="client"/>
+                <field name="pp_number"/>
+                <field name="visa_number"/>
+                <field name="occupation"/>
+                <field name="medical_status"/>
+                <field name="p_rate" sum="Total P Rate"/>
+                <field name="country"/>
+                <field name="company"/>
+                <field name="others" sum="Total Others"/>
+                <field name="total" sum="Grand Total"/>
+                <field name="status"/>
+                <field name="job_type"/>
+                <field name="license_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Job Form View -->
+    <record id="view_recruiting_job_form" model="ir.ui.view">
+        <field name="name">recruiting.job.form</field>
+        <field name="model">recruiting.job</field>
+        <field name="arch" type="xml">
+            <form string="Job">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="license_id"/>
+                            <field name="job_type"/>
+                            <field name="status"/>
+                            <field name="date"/>
+                            <field name="sln"/>
+                            <field name="pp_name"/>
+                            <field name="client"/>
+                            <field name="pp_number"/>
+                            <field name="visa_number"/>
+                            <field name="gender"/>
+                        </group>
+                        <group>
+                            <field name="occupation"/>
+                            <field name="company_id_number"/>
+                            <field name="worker_number"/>
+                            <field name="p_rate"/>
+                            <field name="country"/>
+                            <field name="company"/>
+                            <field name="others"/>
+                            <field name="total"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Documents &amp; Status">
+                            <group>
+                                <group string="Documents">
+                                    <field name="diving_licence"/>
+                                    <field name="police_clearance"/>
+                                    <field name="medical"/>
+                                    <field name="musaned"/>
+                                    <field name="okala"/>
+                                    <field name="mofa"/>
+                                    <field name="stamping"/>
+                                    <field name="finger"/>
+                                    <field name="manpower"/>
+                                </group>
+                                <group string="Dates">
+                                    <field name="musaned_date"/>
+                                    <field name="okala_date"/>
+                                    <field name="mofa_date"/>
+                                    <field name="stamping_date"/>
+                                    <field name="finger_date"/>
+                                    <field name="manpower_date"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="medical_status"/>
+                            </group>
+                            <group string="Remarks">
+                                <field name="remarks" nolabel="1" placeholder="Enter remarks here..."/>
+                            </group>
+                        </page>
+                        <page string="Other Information">
+                            <group>
+                                <field name="updated_by"/>
+                                <field name="create_date"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Job Action -->
+    <record id="action_recruiting_job" model="ir.actions.act_window">
+        <field name="name">Jobs</field>
+        <field name="res_model">recruiting.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first job!
+            </p>
+        </field>
+    </record>
+
     <!-- Top Menu Item -->
     <menuitem 
         id="menu_beman_recruiting_root"
@@ -157,4 +268,12 @@
         parent="menu_beman_recruiting_root"
         action="action_recruiting_license"
         sequence="3"/>
+
+    <!-- Job Menu -->
+    <menuitem
+        id="menu_recruiting_job"
+        name="Jobs"
+        parent="menu_beman_recruiting_root"
+        action="action_recruiting_job"
+        sequence="4"/>
 </odoo> 
