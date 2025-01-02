@@ -125,3 +125,25 @@ class RecruitingJob(models.Model):
     def _compute_total(self):
         for record in self:
             record.total = (record.p_rate or 0) + (record.others or 0) 
+
+    def action_preview_job(self):
+        self.ensure_one()
+        return {
+            'name': 'Job Preview',
+            'type': 'ir.actions.act_window',
+            'res_model': 'recruiting.job',
+            'view_mode': 'form',
+            'res_id': self.id,
+            'view_id': self.env.ref('recruiting.view_recruiting_job_preview_form').id,
+            'target': 'new',
+            'flags': {
+                'mode': 'readonly',
+                'form': {'action_buttons': False}
+            }
+        } 
+
+    def action_set_active(self):
+        self.write({'status': 'active'})
+
+    def action_set_inactive(self):
+        self.write({'status': 'inactive'}) 

@@ -133,23 +133,80 @@
         <field name="model">recruiting.job</field>
         <field name="arch" type="xml">
             <tree string="Jobs">
+             
                 <field name="date"/>
                 <field name="sln"/>
                 <field name="pp_name"/>
                 <field name="client"/>
                 <field name="pp_number"/>
                 <field name="visa_number"/>
-                <field name="occupation"/>
-                <field name="medical_status"/>
+                <!-- <field name="occupation"/>
+                <field name="medical_status"/> -->
                 <field name="p_rate" sum="Total P Rate"/>
-                <field name="country"/>
-                <field name="company"/>
-                <field name="others" sum="Total Others"/>
+                <!-- <field name="country"/> -->
+                <!-- <field name="company"/> -->
+                <!-- <field name="others" sum="Total Others"/> -->
                 <field name="total" sum="Grand Total"/>
-                <field name="status"/>
-                <field name="job_type"/>
-                <field name="license_id"/>
+                <field name="status" decoration-success="status == 'active'" decoration-danger="status == 'inactive'"/>
+                
+                <button name="action_set_active" 
+                        type="object" 
+                        icon="fa-check" 
+                        class="text-success"
+                        attrs="{'invisible': [('status', '=', 'active')]}"
+                        title="Set Active"/>
+                <button name="action_set_inactive" 
+                        type="object" 
+                        icon="fa-times" 
+                        class="text-danger"
+                        attrs="{'invisible': [('status', '=', 'inactive')]}"
+                        title="Set Inactive"/>
+                <!-- <field name="job_type"/> -->
+                <!-- <field name="license_id"/> -->
+                <button name="action_preview_job" type="object" string="Preview" icon="fa-eye" class="oe_highlight"/>
             </tree>
+        </field>
+    </record>
+
+    <!-- Job Preview Form View -->
+    <record id="view_recruiting_job_preview_form" model="ir.ui.view">
+        <field name="name">recruiting.job.preview.form</field>
+        <field name="model">recruiting.job</field>
+        <field name="arch" type="xml">
+            <form string="Job Preview" create="false" edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <group string="Job Details">
+                            <field name="license_id" readonly="1"/>
+                            <field name="job_type" readonly="1"/>
+                            <field name="status" readonly="1"/>
+                            <field name="date" readonly="1"/>
+                            <field name="sln" readonly="1"/>
+                            <field name="country" readonly="1"/>
+                        </group>
+                        <group string="Passport Details">
+                            <field name="pp_name" readonly="1"/>
+                            <field name="pp_number" readonly="1"/>
+                            <field name="gender" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Company Information">
+                            <field name="client" readonly="1"/>
+                            <field name="company" readonly="1"/>
+                            <field name="occupation" readonly="1"/>
+                            <field name="visa_number" readonly="1"/>
+                        </group>
+                        <group string="Status">
+                            <field name="medical_status" readonly="1"/>
+                            <field name="musaned" readonly="1"/>
+                            <field name="okala" readonly="1"/>
+                            <field name="mofa" readonly="1"/>
+                            <field name="stamping" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
