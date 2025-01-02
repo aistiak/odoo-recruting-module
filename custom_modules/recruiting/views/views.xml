@@ -160,67 +160,78 @@
         <field name="arch" type="xml">
             <form string="Job">
                 <sheet>
+                    <!-- Job and Passport Information -->
                     <group>
-                        <group>
+                        <group string="Job Details">
                             <field name="license_id"/>
                             <field name="job_type"/>
                             <field name="status"/>
                             <field name="date"/>
                             <field name="sln"/>
+                            <field name="country"/>
+                        </group>
+                        <group string="Passport Details">
                             <field name="pp_name"/>
-                            <field name="client"/>
                             <field name="pp_number"/>
-                            <field name="visa_number"/>
                             <field name="gender"/>
                         </group>
-                        <group>
-                            <field name="occupation"/>
-                            <field name="company_id_number"/>
-                            <field name="worker_number"/>
-                            <field name="p_rate"/>
-                            <field name="country"/>
+                    </group>
+
+                    <!-- Company and Financial Information -->
+                    <group>
+                        <group string="Company Information">
+                            <field name="client"/>
                             <field name="company"/>
+                            <field name="company_id_number"/>
+                            <field name="occupation"/>
+                            <field name="visa_number"/>
+                            <field name="worker_number"/>
+                        </group>
+                        <group string="Financial">
+                            <field name="p_rate"/>
                             <field name="others"/>
                             <field name="total"/>
                         </group>
                     </group>
-                    <notebook>
-                        <page string="Documents &amp; Status">
-                            <group>
-                                <group string="Documents">
-                                    <field name="diving_licence"/>
-                                    <field name="police_clearance"/>
-                                    <field name="medical"/>
-                                    <field name="musaned"/>
-                                    <field name="okala"/>
-                                    <field name="mofa"/>
-                                    <field name="stamping"/>
-                                    <field name="finger"/>
-                                    <field name="manpower"/>
-                                </group>
-                                <group string="Dates">
-                                    <field name="musaned_date"/>
-                                    <field name="okala_date"/>
-                                    <field name="mofa_date"/>
-                                    <field name="stamping_date"/>
-                                    <field name="finger_date"/>
-                                    <field name="manpower_date"/>
-                                </group>
-                            </group>
-                            <group>
-                                <field name="medical_status"/>
-                            </group>
-                            <group string="Remarks">
-                                <field name="remarks" nolabel="1" placeholder="Enter remarks here..."/>
-                            </group>
-                        </page>
-                        <page string="Other Information">
-                            <group>
-                                <field name="updated_by"/>
-                                <field name="create_date"/>
-                            </group>
-                        </page>
-                    </notebook>
+
+                    <!-- Documents and Processing -->
+                    <group>
+                        <group string="Document Status">
+                            <field name="diving_licence"/>
+                            <field name="police_clearance"/>
+                            <field name="medical"/>
+                            <field name="medical_status" attrs="{'required': [('medical', '=', True)]}"/>
+                        </group>
+                        <group string="Process Status">
+                            <field name="musaned"/>
+                            <field name="okala"/>
+                            <field name="mofa"/>
+                            <field name="stamping"/>
+                            <field name="finger"/>
+                            <field name="manpower"/>
+                        </group>
+                    </group>
+
+                    <!-- Process Dates -->
+                    <group>
+                        <group string="Process Dates">
+                            <field name="musaned_date" attrs="{'required': [('musaned', '=', True)]}"/>
+                            <field name="okala_date" attrs="{'required': [('okala', '=', True)]}"/>
+                            <field name="mofa_date" attrs="{'required': [('mofa', '=', True)]}"/>
+                            <field name="stamping_date" attrs="{'required': [('stamping', '=', True)]}"/>
+                            <field name="finger_date" attrs="{'required': [('finger', '=', True)]}"/>
+                            <field name="manpower_date" attrs="{'required': [('manpower', '=', True)]}"/>
+                        </group>
+                        <group string="Audit Information">
+                            <field name="updated_by"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+
+                    <!-- Remarks -->
+                    <group string="Remarks">
+                        <field name="remarks" nolabel="1" placeholder="Enter remarks here..."/>
+                    </group>
                 </sheet>
             </form>
         </field>
