@@ -1,72 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Action Window -->
-    <record id="action_beman_recruiting_main" model="ir.actions.act_window">
-        <field name="name">Dashboard</field>
-        <field name="res_model">recruiting.clients</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="help" type="html">
-            <div class="o_welcome_message">
-                <h1 class="text-center o_wow_title display-3 fw-bold">Welcome to Beman Recruiting</h1>
-                <div class="text-center lead mb-3">
-                    Your complete recruitment management solution
-                </div>
-                <div class="text-center">
-                    <p>Start managing your recruitment process by creating your first client!</p>
-                    <a type="action" name="%(action_recruiting_clients)d" class="btn btn-primary">
-                        Create First Client
-                    </a>
-                </div>
-            </div>
-        </field>
-    </record>
-
-    <!-- Clients List View -->
-    <record id="view_recruiting_clients_tree" model="ir.ui.view">
-        <field name="name">recruiting.clients.tree</field>
-        <field name="model">recruiting.clients</field>
-        <field name="arch" type="xml">
-            <tree string="Clients">
-                <field name="name"/>
-                <field name="email"/>
-                <field name="phone"/>
-                <field name="invoice" sum="Total Invoice"/>
-                <field name="receive" sum="Total Receive"/>
-                <field name="bill" sum="Total Bill"/>
-                <field name="bill_pay" sum="Total Bill Pay"/>
-                <field name="status"/>
-                <field name="create_date"/>
-            </tree>
-        </field>
-    </record>
-
-    <!-- Clients Form View -->
-    <record id="view_recruiting_clients_form" model="ir.ui.view">
-        <field name="name">recruiting.clients.form</field>
-        <field name="model">recruiting.clients</field>
-        <field name="arch" type="xml">
-            <form string="Client">
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="email"/>
-                            <field name="phone"/>
-                            <field name="status"/>
-                        </group>
-                        <group>
-                            <field name="invoice"/>
-                            <field name="receive"/>
-                            <field name="bill"/>
-                            <field name="bill_pay"/>
-                            <field name="create_date"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
     <!-- Clients Action -->
     <record id="action_recruiting_clients" model="ir.actions.act_window">
         <field name="name">Clients</field>
@@ -78,6 +11,36 @@
             </p>
         </field>
     </record>
+
+    <!-- Dashboard Action -->
+    <record id="action_beman_recruiting_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">recruiting.main</field>
+        <field name="target">main</field>
+    </record>
+
+    <!-- Top Menu Item -->
+    <menuitem 
+        id="menu_beman_recruiting_root"
+        name="Beman Recruiting"
+        web_icon="recruiting,static/description/icon.png"
+        sequence="75"/>
+
+    <!-- Main Sub Menu -->
+    <menuitem 
+        id="menu_beman_recruiting_main"
+        name="Dashboard"
+        parent="menu_beman_recruiting_root"
+        action="action_beman_recruiting_dashboard"
+        sequence="1"/>
+
+    <!-- Clients Menu -->
+    <menuitem
+        id="menu_recruiting_clients"
+        name="Clients"
+        parent="menu_beman_recruiting_root"
+        action="action_recruiting_clients"
+        sequence="2"/>
 
     <!-- License List View -->
     <record id="view_recruiting_license_tree" model="ir.ui.view">
@@ -305,29 +268,6 @@
             </p>
         </field>
     </record>
-
-    <!-- Top Menu Item -->
-    <menuitem 
-        id="menu_beman_recruiting_root"
-        name="Beman Recruiting"
-        web_icon="recruiting,static/description/icon.png"
-        sequence="75"/>
-
-    <!-- Main Sub Menu -->
-    <menuitem 
-        id="menu_beman_recruiting_main"
-        name="Dashboard"
-        parent="menu_beman_recruiting_root"
-        action="action_beman_recruiting_main"
-        sequence="1"/>
-
-    <!-- Clients Menu -->
-    <menuitem
-        id="menu_recruiting_clients"
-        name="Clients"
-        parent="menu_beman_recruiting_root"
-        action="action_recruiting_clients"
-        sequence="2"/>
 
     <!-- License Menu -->
     <menuitem
