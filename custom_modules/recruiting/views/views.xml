@@ -13,10 +13,22 @@
     </record>
 
     <!-- Dashboard Action -->
-    <record id="action_beman_recruiting_dashboard" model="ir.actions.client">
+    <!-- <record id="action_beman_recruiting_dashboard" model="ir.actions.client">
         <field name="name">Dashboard</field>
         <field name="tag">recruiting.main</field>
         <field name="target">main</field>
+    </record> -->
+
+    <!-- Job Action -->
+    <record id="action_recruiting_job" model="ir.actions.act_window">
+        <field name="name">Jobs</field>
+        <field name="res_model">recruiting.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first job!
+            </p>
+        </field>
     </record>
 
     <!-- Top Menu Item -->
@@ -29,9 +41,9 @@
     <!-- Main Sub Menu -->
     <menuitem 
         id="menu_beman_recruiting_main"
-        name="Dashboard"
+        name="Jobs"
         parent="menu_beman_recruiting_root"
-        action="action_beman_recruiting_dashboard"
+        action="action_recruiting_job"
         sequence="1"/>
 
     <!-- Clients Menu -->
@@ -254,18 +266,6 @@
                     </group>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <!-- Job Action -->
-    <record id="action_recruiting_job" model="ir.actions.act_window">
-        <field name="name">Jobs</field>
-        <field name="res_model">recruiting.job</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create your first job!
-            </p>
         </field>
     </record>
 
